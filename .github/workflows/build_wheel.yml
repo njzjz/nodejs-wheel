@@ -25,9 +25,9 @@ jobs:
             python: 311
             platform_id: macosx_x86_64
           # windows-64
-          - os: windows-latest
-            python: 311
-            platform_id: win_amd64
+          # - os: windows-latest
+          #   python: 311
+          #   platform_id: win_amd64
     steps:
       - uses: actions/checkout@v4
       - name: Build wheels
