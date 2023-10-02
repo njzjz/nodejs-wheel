@@ -37,7 +37,14 @@ elseif(WIN32)
     install(
         FILES ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/out/Release/node.exe
         DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel
-        USE_SOURCE_PERMISSIONS
+        PERMISSIONS
+        OWNER_READ
+        OWNER_WRITE
+        OWNER_EXECUTE
+        GROUP_READ
+        GROUP_EXECUTE
+        WORLD_READ
+        WORLD_EXECUTE
     )
     install(
         DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm
