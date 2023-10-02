@@ -14,3 +14,11 @@ def _program(name, args):
 def node():
     suffix = '.exe' if os.name == 'nt' else ''
     raise SystemExit(_program('node' + suffix, sys.argv[1:]))
+
+def npm():
+    suffix = '.exe' if os.name == 'nt' else ''
+    raise SystemExit(_program('npm' + suffix, sys.argv[1:]))
+
+def npx():
+    suffix = '.exe' if os.name == 'nt' else ''
+    raise SystemExit(_program('npx' + suffix, sys.argv[1:]))
