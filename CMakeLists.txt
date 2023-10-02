@@ -35,8 +35,13 @@ elseif(WIN32)
         USES_TERMINAL_TEST true
     )
     install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/out/Release/
+        FILES ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/out/Release/node.exe
         DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel
+        USE_SOURCE_PERMISSIONS
+    )
+    install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm
+        DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel/lib/node_modules/
         USE_SOURCE_PERMISSIONS
     )
 else()
