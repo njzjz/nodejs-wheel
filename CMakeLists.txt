@@ -5,9 +5,9 @@ ProcessorCount(N)
 include(ExternalProject)
 ExternalProject_Add(nodejs
     URL https://github.com/nodejs/node/archive/refs/tags/v18.18.0.tar.gz
-    CONFIGURE_COMMAND ./configure --prefix=<INSTALL_DIR>
-    BUILD_IN_SOURCE 1
+    CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=${SKBUILD_PLATLIB_DIR}/nodejs_wheel
     BUILD_COMMAND make -j${N}
+    INSTALL_COMMAND make install
     USES_TERMINAL_DOWNLOAD true
     USES_TERMINAL_UPDATE true
     USES_TERMINAL_PATCH true
