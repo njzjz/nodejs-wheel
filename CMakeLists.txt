@@ -6,6 +6,7 @@ include(ExternalProject)
 ExternalProject_Add(nodejs
     URL https://github.com/nodejs/node/archive/refs/tags/v18.18.0.tar.gz
     CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=${SKBUILD_PLATLIB_DIR}/nodejs_wheel
+    BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j${N}
     INSTALL_COMMAND make install
     USES_TERMINAL_DOWNLOAD true
