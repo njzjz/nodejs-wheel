@@ -35,7 +35,7 @@ elseif(WIN32)
         USES_TERMINAL_TEST true
     )
     install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/Release
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/out/Release/
         DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel
         USE_SOURCE_PERMISSIONS
     )
