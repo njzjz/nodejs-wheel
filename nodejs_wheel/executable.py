@@ -11,14 +11,18 @@ def _program(name, args):
     return subprocess.call([os.path.join(ROOT_DIR, "bin", name)] + args, close_fds=False)
 
 
-def node():
+def call_node(*args):
     suffix = '.exe' if os.name == 'nt' else ''
-    raise SystemExit(_program('node' + suffix, sys.argv[1:]))
+    raise SystemExit(_program('node' + suffix, args))
+
+
+def node():
+    call_node(*sys.argv[1:])
+
 
 def npm():
-    suffix = '.exe' if os.name == 'nt' else ''
-    raise SystemExit(_program('npm' + suffix, sys.argv[1:]))
+    call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"), *sys.argv[1:])
+
 
 def npx():
-    suffix = '.exe' if os.name == 'nt' else ''
-    raise SystemExit(_program('npx' + suffix, sys.argv[1:]))
+    call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"), *sys.argv[1:])
