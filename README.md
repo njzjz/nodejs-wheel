@@ -27,6 +27,8 @@ The project is powered by [scikit-build-core](https://github.com/scikit-build/sc
 
 ```sh
 node -h
+npm -h
+npx -h
 ```
 
 ## License
