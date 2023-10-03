@@ -13,7 +13,7 @@ def _program(name, args):
 
 def call_node(*args):
     suffix = '.exe' if os.name == 'nt' else ''
-    raise SystemExit(_program('node' + suffix, args))
+    raise SystemExit(_program('node' + suffix, list(args)))
 
 
 def node():
