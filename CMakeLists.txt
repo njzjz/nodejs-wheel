@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-file(READ ".nvmrc" _ver)
+file(READ "${CMAKE_SOURCE_DIR}/.nvmrc" _ver)
 project(nodejs-wheel VERSION ${_ver})
 include(ProcessorCount)
 ProcessorCount(N)
