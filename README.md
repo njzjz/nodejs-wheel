@@ -21,6 +21,7 @@ The project is powered by [scikit-build-core](https://github.com/scikit-build/sc
 | ------- | ------- | --- | -------------- |
 | Linux   | x86_64  | 64  | glibc >= 2.17  |
 | macOS   | x86_64  | 64  | >= macOS-10.9  |
+| macOS   | arm64   | 64  | >= macOS-11    |
 | Windows | amd64   | 64  |                |
 
 ## Usage
