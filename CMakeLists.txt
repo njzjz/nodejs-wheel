@@ -8,8 +8,9 @@ include(ExternalProject)
 if (UNIX)
     ExternalProject_Add(nodejs
         URL https://github.com/nodejs/node/archive/refs/tags/v${CMAKE_PROJECT_VERSION}.tar.gz
-        CONFIGURE_COMMAND  echo '\#undef HAVE_SYS_RANDOM_H' >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h
-        COMMAND echo '\#undef HAVE_GETRANDOM' >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h
+        CONFIGURE_COMMAND "echo >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h"
+        COMMAND "echo #undef HAVE_SYS_RANDOM_H >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h"
+        COMMAND "echo #undef HAVE_GETRANDOM >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h"
         COMMAND <SOURCE_DIR>/configure --prefix=${SKBUILD_PLATLIB_DIR}/nodejs_wheel
         BUILD_IN_SOURCE 1
         BUILD_COMMAND make -j${N}
