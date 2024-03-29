@@ -12,8 +12,8 @@ if (UNIX)
         COMMAND echo '#undef HAVE_GETRANDOM' >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h
         COMMAND <SOURCE_DIR>/configure --prefix=${SKBUILD_PLATLIB_DIR}/nodejs_wheel
         BUILD_IN_SOURCE 1
-        BUILD_COMMAND $(MAKE)
-        INSTALL_COMMAND $(MAKE) install
+        BUILD_COMMAND make -j${N}
+        INSTALL_COMMAND make install
         USES_TERMINAL_DOWNLOAD true
         USES_TERMINAL_UPDATE true
         USES_TERMINAL_PATCH true
