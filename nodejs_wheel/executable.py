@@ -17,13 +17,19 @@ def call_node(*args):
     raise SystemExit(_program('node' + suffix, list(args)))
 
 
-def node():
-    call_node(*sys.argv[1:])
+def node(args=None):
+    if args is None:
+        args = sys.argv[1:]
+    call_node(*args)
 
 
-def npm():
-    call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"), *sys.argv[1:])
+def npm(args=None):
+    if args is None:
+        args = sys.argv[1:]
+    call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"), *args)
 
 
-def npx():
-    call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"), *sys.argv[1:])
+def npx(args=None):
+    if args is None:
+        args = sys.argv[1:]
+    call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"), *args)
