@@ -11,6 +11,12 @@
 pip install nodejs-wheel
 ```
 
+If you don't need command line interface (CLI), install only `nodejs-wheel-binaries`, which is a direct dependency of `nodejs-wheel`.
+
+```sh
+pip install nodejs-wheel-binaries
+```
+
 The package requires Python 3.7 and above.
 
 The project is powered by [scikit-build-core](https://github.com/scikit-build/scikit-build-core) and [cibuildwheel](https://github.com/pypa/cibuildwheel).
