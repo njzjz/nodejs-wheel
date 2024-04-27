@@ -32,10 +32,28 @@ The project is powered by [scikit-build-core](https://github.com/scikit-build/sc
 
 ## Usage
 
+### Command line
+
+Only available in the `nodejs-wheel` package.
+
 ```sh
 node -h
 npm -h
 npx -h
+```
+
+### Python API
+
+```py
+from nodejs_wheel import (
+    node,
+    npm,
+    npx,
+)
+
+node("--version")
+npm("--version")
+npx("--version")
 ```
 
 ## License
