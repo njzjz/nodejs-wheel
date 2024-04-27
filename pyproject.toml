@@ -41,4 +41,4 @@ build = ["cp311-*"]
 skip = ["*-win32", "*-manylinux_i686", "*-musllinux*"]
 build-verbosity = 1
 before-test = ["pip install --no-deps cmd/"]
-test-command = "node -h && npm --version && npx --version && python {project}/test_api.py"
+test-command = "node -h && npm --version && npx --version && python {project}/tests/test_api.py"
