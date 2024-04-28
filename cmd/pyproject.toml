@@ -23,9 +23,9 @@ keywords = ["nodejs"]
 repository = "https://github.com/njzjz/nodejs-wheel"
 
 [project.scripts]
-node = "nodejs_wheel.executable:node"
-npm = "nodejs_wheel.executable:npm"
-npx = "nodejs_wheel.executable:npx"
+node = "nodejs_wheel.executable:_node_entry_point"
+npm = "nodejs_wheel.executable:_npm_entry_point"
+npx = "nodejs_wheel.executable:_npx_entry_point"
 
 [tool.setuptools_scm]
 root = ".."
