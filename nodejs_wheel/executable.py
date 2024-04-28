@@ -81,12 +81,12 @@ def npx(args=None, **kwargs):
 
 
 def _node_entry_point():
-    raise SystemExit(node(), close_fds=False)
+    raise SystemExit(node(close_fds=False))
 
 
 def _npm_entry_point():
-    raise SystemExit(npm(), close_fds=False)
+    raise SystemExit(npm(close_fds=False))
 
 
 def _npx_entry_point():
-    raise SystemExit(npx(), close_fds=False)
+    raise SystemExit(npx(close_fds=False))
