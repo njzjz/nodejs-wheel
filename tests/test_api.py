@@ -4,6 +4,6 @@ from nodejs_wheel import (
     npx,
 )
 
-node("--version")
-npm("--version")
-npx("--version")
+node(["--version"])
+npm(["--version"])
+npx(["--version"])
