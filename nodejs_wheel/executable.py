@@ -7,24 +7,26 @@ import sys
 ROOT_DIR = os.path.dirname(__file__)
 
 
-def _program(name, args):
+def _program(name, args, **kwargs):
     bin_dir = ROOT_DIR if os.name == 'nt' else os.path.join(ROOT_DIR, "bin")
-    return subprocess.call([os.path.join(bin_dir, name)] + args, close_fds=False)
+    return subprocess.call([os.path.join(bin_dir, name)] + args, **kwargs)
 
 
-def call_node(*args):
+def call_node(*args, **kwargs):
     suffix = '.exe' if os.name == 'nt' else ''
-    return _program('node' + suffix, list(args))
+    return _program('node' + suffix, list(args), **kwargs)
 
 
-def node(args=None):
+def node(args=None, **kwargs):
     """Call the node executable with the given arguments.
-    
+
     Parameters
     ----------
     args : Optional[list[str]], default=None
         List of arguments to pass to the node executable.
         If None, the arguments are taken from sys.argv[1:].
+    **kwargs : dict[str, Any]
+        Other arguments passed to subprocess.call
 
     Returns
     -------
@@ -33,17 +35,19 @@ def node(args=None):
     """
     if args is None:
         args = sys.argv[1:]
-    return call_node(*args)
+    return call_node(*args, **kwargs)
 
 
-def npm(args=None):
+def npm(args=None, **kwargs):
     """Call the npm executable with the given arguments.
-    
+
     Parameters
     ----------
     args : Optional[list[str]], default=None
         List of arguments to pass to the npm executable.
         If None, the arguments are taken from sys.argv[1:].
+    **kwargs : dict[str, Any]
+        Other arguments passed to subprocess.call
 
     Returns
     -------
@@ -52,17 +56,19 @@ def npm(args=None):
     """
     if args is None:
         args = sys.argv[1:]
-    return call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"), *args)
+    return call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"), *args, **kwargs)
 
 
-def npx(args=None):
+def npx(args=None, **kwargs):
     """Call the npx executable with the given arguments.
-    
+
     Parameters
     ----------
     args : Optional[list[str]], default=None
         List of arguments to pass to the npx executable.
         If None, the arguments are taken from sys.argv[1:].
+    **kwargs : dict[str, Any]
+        Other arguments passed to subprocess.call
 
     Returns
     -------
@@ -71,16 +77,16 @@ def npx(args=None):
     """
     if args is None:
         args = sys.argv[1:]
-    return call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"), *args)
+    return call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"), *args, **kwargs)
 
 
 def _node_entry_point():
-    raise SystemExit(node())
+    raise SystemExit(node(), close_fds=False)
 
 
 def _npm_entry_point():
-    raise SystemExit(npm())
+    raise SystemExit(npm(), close_fds=False)
 
 
 def _npx_entry_point():
-    raise SystemExit(npx())
+    raise SystemExit(npx(), close_fds=False)
