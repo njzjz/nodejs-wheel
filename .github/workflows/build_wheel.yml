@@ -20,6 +20,18 @@ jobs:
           - os: ubuntu-latest
             python: 311
             platform_id: manylinux_x86_64
+          # linux-aarch64
+          - os: ubuntu-latest
+            python: 311
+            platform_id: manylinux_aarch64
+          # linux-ppc64le
+          - os: ubuntu-latest
+            python: 311
+            platform_id: manylinux_ppc64le
+          # linux-s390x
+          - os: ubuntu-latest
+            python: 311
+            platform_id: manylinux_s390x
           # macos-x86-64
           - os: macos-13
             python: 311
@@ -34,6 +46,11 @@ jobs:
             platform_id: win_amd64
     steps:
       - uses: actions/checkout@v4
+      - name: Set up QEMU
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
       - uses: ilammy/setup-nasm@v1
         if: matrix.platform_id == 'win_amd64'
       - name: Build wheels
