@@ -47,7 +47,7 @@ npx -h
 Only support `node`.
 
 ```sh
-python -m nodejs-wheel --version
+python -m nodejs_wheel --version
 ```
 
 ### Python API
