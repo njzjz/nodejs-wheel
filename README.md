@@ -42,6 +42,14 @@ npm -h
 npx -h
 ```
 
+### Run library module as a script
+
+Only support `node`.
+
+```sh
+python -m nodejs_wheel --version
+```
+
 ### Python API
 
 ```py
