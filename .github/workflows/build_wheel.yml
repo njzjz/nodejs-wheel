@@ -12,7 +12,7 @@ jobs:
   build_wheels:
     name: Build wheels for cp${{ matrix.python }}-${{ matrix.platform_id }}
     runs-on: ${{ matrix.os }}
-    if: ! (matrix.platform_id == 'manylinux_aarch64' && github.repository_owner != 'njzjz')
+    if: matrix.platform_id != 'manylinux_aarch64' || github.repository_owner == 'njzjz'
     strategy:
       fail-fast: false
       matrix:
