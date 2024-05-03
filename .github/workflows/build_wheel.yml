@@ -36,8 +36,6 @@ jobs:
           - os: '[\"Linux\",\"ARM64\"]'
             python: 311
             platform_id: manylinux_aarch64
-        exclude:
-          - platform_id: ${{ github.repository_owner != 'njzjz' && 'manylinux_aarch64' }}
 
     steps:
       - uses: actions/checkout@v4
