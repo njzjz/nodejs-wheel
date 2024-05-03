@@ -33,7 +33,7 @@ jobs:
             python: 311
             platform_id: win_amd64
           # linux-aarch64
-          - os: '[\"Linux\",\"ARM64\"]'
+          - os: ARM64
             python: 311
             platform_id: manylinux_aarch64
 
