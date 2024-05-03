@@ -11,7 +11,7 @@
 pip install nodejs-wheel
 ```
 
-If you don't need command line interface (CLI), install only `nodejs-wheel-binaries`, which is a direct dependency of `nodejs-wheel`.
+*New in v20.13.0*: If you don't need command line interface (CLI), install only `nodejs-wheel-binaries`, which is a direct dependency of `nodejs-wheel`.
 
 ```sh
 pip install nodejs-wheel-binaries
@@ -23,12 +23,13 @@ The project is powered by [scikit-build-core](https://github.com/scikit-build/sc
 
 ## Available Builds
 
-| OS      | Arch    | Bit | Conditions     |
-| ------- | ------- | --- | -------------- |
-| Linux   | x86_64  | 64  | glibc >= 2.17  |
-| macOS   | x86_64  | 64  | >= macOS-10.9  |
-| macOS   | arm64   | 64  | >= macOS-11    |
-| Windows | amd64   | 64  |                |
+| OS      | Arch    | Bit | Conditions     | New in      |
+| ------- | ------- | --- | -------------- | ----------- |
+| Linux   | x86_64  | 64  | glibc >= 2.17  | v18.18.0    |
+| Linux   | aarch64 | 64  | glibc >= 2.17  | v20.13.0    |
+| macOS   | x86_64  | 64  | >= macOS-10.9  | v18.18.0    |
+| macOS   | arm64   | 64  | >= macOS-11    | v20.11.1    |
+| Windows | amd64   | 64  |                | v18.18.0    |
 
 ## Usage
 
@@ -44,6 +45,8 @@ npx -h
 
 ### Run library module as a script
 
+*New in v20.13.0*.
+
 Only support `node`.
 
 ```sh
@@ -51,6 +54,8 @@ python -m nodejs_wheel --version
 ```
 
 ### Python API
+
+*New in v20.13.0*.
 
 ```py
 from nodejs_wheel import (
