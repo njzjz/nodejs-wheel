@@ -12,6 +12,7 @@ jobs:
   build_wheels:
     name: Build wheels for cp${{ matrix.python }}-${{ matrix.platform_id }}
     runs-on: ${{ matrix.os }}
+    if: ! (matrix.platform_id == 'manylinux_aarch64' && github.repository_owner != 'njzjz')
     strategy:
       fail-fast: false
       matrix:
@@ -32,6 +33,10 @@ jobs:
           - os: windows-latest
             python: 311
             platform_id: win_amd64
+          # linux-aarch64
+          - os: '[\"Linux\",\"ARM64\"]'
+            python: 311
+            platform_id: manylinux_aarch64
     steps:
       - uses: actions/checkout@v4
       - uses: ilammy/setup-nasm@v1
