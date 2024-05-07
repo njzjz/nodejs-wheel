@@ -34,3 +34,6 @@ source = "vcs"
 root = ".."
 
 [tool.hatch.metadata.hooks.custom]
+
+[tool.hatch.build.targets.wheel]
+packages = []
