@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools", "setuptools_scm"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [project]
 name = "nodejs-wheel"
@@ -27,5 +27,10 @@ node = "nodejs_wheel.executable:_node_entry_point"
 npm = "nodejs_wheel.executable:_npm_entry_point"
 npx = "nodejs_wheel.executable:_npx_entry_point"
 
-[tool.setuptools_scm]
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
 root = ".."
+
+[tool.hatch.metadata.hooks.custom]
