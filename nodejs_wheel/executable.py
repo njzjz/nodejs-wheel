@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import subprocess
 import sys
@@ -8,13 +7,13 @@ ROOT_DIR = os.path.dirname(__file__)
 
 
 def _program(name, args, **kwargs):
-    bin_dir = ROOT_DIR if os.name == 'nt' else os.path.join(ROOT_DIR, "bin")
-    return subprocess.call([os.path.join(bin_dir, name)] + args, **kwargs)
+    bin_dir = ROOT_DIR if os.name == "nt" else os.path.join(ROOT_DIR, "bin")
+    return subprocess.call([os.path.join(bin_dir, name), *args], **kwargs)
 
 
 def call_node(*args, **kwargs):
-    suffix = '.exe' if os.name == 'nt' else ''
-    return _program('node' + suffix, list(args), **kwargs)
+    suffix = ".exe" if os.name == "nt" else ""
+    return _program("node" + suffix, list(args), **kwargs)
 
 
 def node(args=None, **kwargs):
@@ -56,7 +55,11 @@ def npm(args=None, **kwargs):
     """
     if args is None:
         args = sys.argv[1:]
-    return call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"), *args, **kwargs)
+    return call_node(
+        os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"),
+        *args,
+        **kwargs,
+    )
 
 
 def npx(args=None, **kwargs):
@@ -77,7 +80,11 @@ def npx(args=None, **kwargs):
     """
     if args is None:
         args = sys.argv[1:]
-    return call_node(os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"), *args, **kwargs)
+    return call_node(
+        os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"),
+        *args,
+        **kwargs,
+    )
 
 
 def _node_entry_point():

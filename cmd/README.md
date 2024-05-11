@@ -5,7 +5,7 @@
 [![Pypi downloads](https://img.shields.io/pypi/dw/nodejs-wheel)](https://pypi.org/project/nodejs-wheel/)
 [![Pypi downloads](https://img.shields.io/pypi/dd/nodejs-wheel)](https://pypi.org/project/nodejs-wheel/)
 
-`nodejs-wheel` is an unofficial repository to distribute Node.js prebuilt wheels through PyPI using 
+`nodejs-wheel` is an unofficial repository to distribute Node.js prebuilt wheels through PyPI using
 
 ```sh
 pip install nodejs-wheel
