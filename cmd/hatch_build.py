@@ -1,4 +1,4 @@
-from typing import Type
+from __future__ import annotations
 
 from hatchling.metadata.plugin.interface import MetadataHookInterface
 from hatchling.plugin import hookimpl
@@ -12,5 +12,5 @@ class DependenciesMetadataHook(MetadataHookInterface):
 
 
 @hookimpl
-def hatch_register_metadata_hook() -> Type[DependenciesMetadataHook]:
+def hatch_register_metadata_hook() -> type[DependenciesMetadataHook]:
     return DependenciesMetadataHook
