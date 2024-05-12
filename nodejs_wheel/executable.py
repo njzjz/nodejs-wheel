@@ -8,7 +8,7 @@ from typing import Any
 ROOT_DIR = os.path.dirname(__file__)
 
 
-def _program(name: str, args: list[str] | None, **kwargs: Any) -> int:
+def _program(name: str, args: list[str], **kwargs: Any) -> int:
     bin_dir = ROOT_DIR if os.name == "nt" else os.path.join(ROOT_DIR, "bin")
     return subprocess.call([os.path.join(bin_dir, name), *args], **kwargs)
 
