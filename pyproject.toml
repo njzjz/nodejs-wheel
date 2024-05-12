@@ -84,3 +84,4 @@ convention = "numpy"
 required-imports = ["from __future__ import annotations"]
 
 [tool.pyright]
+exclude = ["cmd/hatch_build.py"]
