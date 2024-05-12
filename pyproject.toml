@@ -43,6 +43,9 @@ build-verbosity = 1
 before-test = ["pip install --no-deps cmd/"]
 test-command = "node -h && npm --version && npx --version && python -m nodejs_wheel --version && python {project}/tests/test_api.py"
 
+[tool.cibuildwheel.macos.environment]
+MACOSX_DEPLOYMENT_TARGET = "10.15"
+
 [tool.ruff.format]
 docstring-code-format = true
 
