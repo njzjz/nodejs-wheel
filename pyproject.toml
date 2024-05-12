@@ -56,6 +56,8 @@ select = [
     "RUF", # ruff
     "NPY", # numpy
     "T20", # ban print
+    "I", # isort
+    "TCH", # flake8-type-checking
 ]
 
 ignore = [
@@ -77,3 +79,9 @@ ignore-init-module-imports = true
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]
+
+[tool.pyright]
+exclude = ["cmd/hatch_build.py"]

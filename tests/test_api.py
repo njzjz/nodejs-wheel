@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from nodejs_wheel import (
     node,
     npm,

@@ -1,22 +1,24 @@
+from __future__ import annotations
+
 import os
 import subprocess
 import sys
-
+from typing import Any
 
 ROOT_DIR = os.path.dirname(__file__)
 
 
-def _program(name, args, **kwargs):
+def _program(name: str, args: list[str], **kwargs: Any) -> int:
     bin_dir = ROOT_DIR if os.name == "nt" else os.path.join(ROOT_DIR, "bin")
     return subprocess.call([os.path.join(bin_dir, name), *args], **kwargs)
 
 
-def call_node(*args, **kwargs):
+def call_node(*args: str, **kwargs: Any) -> int:
     suffix = ".exe" if os.name == "nt" else ""
     return _program("node" + suffix, list(args), **kwargs)
 
 
-def node(args=None, **kwargs):
+def node(args: list[str] | None = None, **kwargs: Any) -> int:
     """Call the node executable with the given arguments.
 
     Parameters
@@ -37,7 +39,7 @@ def node(args=None, **kwargs):
     return call_node(*args, **kwargs)
 
 
-def npm(args=None, **kwargs):
+def npm(args: list[str] | None = None, **kwargs: Any) -> int:
     """Call the npm executable with the given arguments.
 
     Parameters
@@ -62,7 +64,7 @@ def npm(args=None, **kwargs):
     )
 
 
-def npx(args=None, **kwargs):
+def npx(args: list[str] | None = None, **kwargs: Any) -> int:
     """Call the npx executable with the given arguments.
 
     Parameters
@@ -87,13 +89,13 @@ def npx(args=None, **kwargs):
     )
 
 
-def _node_entry_point():
+def _node_entry_point() -> None:
     raise SystemExit(node(close_fds=False))
 
 
-def _npm_entry_point():
+def _npm_entry_point() -> None:
     raise SystemExit(npm(close_fds=False))
 
 
-def _npx_entry_point():
+def _npx_entry_point() -> None:
     raise SystemExit(npx(close_fds=False))
