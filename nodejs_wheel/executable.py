@@ -3,22 +3,90 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
-from typing import Any
+from typing import Any, Literal, overload
 
 ROOT_DIR = os.path.dirname(__file__)
 
 
-def _program(name: str, args: list[str], **kwargs: Any) -> int:
+@overload
+def _program(
+    name: str, args: list[str], return_completed_process: Literal[True], **kwargs: Any
+) -> subprocess.CompletedProcess[str | bytes]: ...
+
+
+@overload
+def _program(
+    name: str, args: list[str], return_completed_process: Literal[False], **kwargs: Any
+) -> subprocess.CompletedProcess[str | bytes]: ...
+
+
+@overload
+def _program(
+    name: str, args: list[str], return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]: ...
+
+
+def _program(
+    name: str, args: list[str], return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]:
     bin_dir = ROOT_DIR if os.name == "nt" else os.path.join(ROOT_DIR, "bin")
-    return subprocess.call([os.path.join(bin_dir, name), *args], **kwargs)
+    complete_process = subprocess.run([os.path.join(bin_dir, name), *args], **kwargs)
+    if return_completed_process:
+        return complete_process
+    return complete_process.returncode
 
 
-def call_node(*args: str, **kwargs: Any) -> int:
+@overload
+def call_node(
+    *args: str, return_completed_process: Literal[True], **kwargs: Any
+) -> subprocess.CompletedProcess[str | bytes]: ...
+
+
+@overload
+def call_node(
+    *args: str, return_completed_process: Literal[False], **kwargs: Any
+) -> int: ...
+
+
+@overload
+def call_node(
+    *args: str, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]: ...
+
+
+def call_node(
+    *args: str, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]:
     suffix = ".exe" if os.name == "nt" else ""
-    return _program("node" + suffix, list(args), **kwargs)
+    return _program(
+        "node" + suffix,
+        list(args),
+        return_completed_process=return_completed_process,
+        **kwargs,
+    )
 
 
-def node(args: list[str] | None = None, **kwargs: Any) -> int:
+@overload
+def node(
+    args: list[str] | None, return_completed_process: Literal[True], **kwargs: Any
+) -> subprocess.CompletedProcess[str | bytes]: ...
+
+
+@overload
+def node(
+    args: list[str] | None, return_completed_process: Literal[False], **kwargs: Any
+) -> int: ...
+
+
+@overload
+def node(
+    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]: ...
+
+
+def node(
+    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]:
     """Call the node executable with the given arguments.
 
     Parameters
@@ -26,20 +94,42 @@ def node(args: list[str] | None = None, **kwargs: Any) -> int:
     args : Optional[list[str]], default=None
         List of arguments to pass to the node executable.
         If None, the arguments are taken from sys.argv[1:].
+    return_completed_process : bool, default=False
+        If True, return the CompletedProcess[str | bytes] object instead of the return code.
     **kwargs : dict[str, Any]
         Other arguments passed to subprocess.call
 
     Returns
     -------
-    int
-        Return code of the node executable.
+    int | subprocess.CompletedProcess[str | bytes]
+        Return code of the node executable or the CompletedProcess[str | bytes] object.
     """
     if args is None:
         args = sys.argv[1:]
-    return call_node(*args, **kwargs)
+    return call_node(*args, return_completed_process=return_completed_process, **kwargs)
 
 
-def npm(args: list[str] | None = None, **kwargs: Any) -> int:
+@overload
+def npm(
+    args: list[str] | None, return_completed_process: Literal[True], **kwargs: Any
+) -> subprocess.CompletedProcess[str | bytes]: ...
+
+
+@overload
+def npm(
+    args: list[str] | None, return_completed_process: Literal[False], **kwargs: Any
+) -> int: ...
+
+
+@overload
+def npm(
+    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]: ...
+
+
+def npm(
+    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]:
     """Call the npm executable with the given arguments.
 
     Parameters
@@ -47,24 +137,47 @@ def npm(args: list[str] | None = None, **kwargs: Any) -> int:
     args : Optional[list[str]], default=None
         List of arguments to pass to the npm executable.
         If None, the arguments are taken from sys.argv[1:].
+    return_completed_process : bool, default=False
+        If True, return the CompletedProcess[str | bytes] object instead of the return code.
     **kwargs : dict[str, Any]
         Other arguments passed to subprocess.call
 
     Returns
     -------
-    int
-        Return code of the npm executable.
+    int | subprocess.CompletedProcess[str | bytes]
+        Return code of the npm executable or the CompletedProcess[str | bytes] object.
     """
     if args is None:
         args = sys.argv[1:]
     return call_node(
         os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npm-cli.js"),
         *args,
+        return_completed_process=return_completed_process,
         **kwargs,
     )
 
 
-def npx(args: list[str] | None = None, **kwargs: Any) -> int:
+@overload
+def npx(
+    args: list[str] | None, return_completed_process: Literal[True], **kwargs: Any
+) -> subprocess.CompletedProcess[str | bytes]: ...
+
+
+@overload
+def npx(
+    args: list[str] | None, return_completed_process: Literal[False], **kwargs: Any
+) -> int: ...
+
+
+@overload
+def npx(
+    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]: ...
+
+
+def npx(
+    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+) -> int | subprocess.CompletedProcess[str | bytes]:
     """Call the npx executable with the given arguments.
 
     Parameters
@@ -72,19 +185,22 @@ def npx(args: list[str] | None = None, **kwargs: Any) -> int:
     args : Optional[list[str]], default=None
         List of arguments to pass to the npx executable.
         If None, the arguments are taken from sys.argv[1:].
+    return_completed_process : bool, default=False
+        If True, return the CompletedProcess[str | bytes] object instead of the return code.
     **kwargs : dict[str, Any]
         Other arguments passed to subprocess.call
 
     Returns
     -------
-    int
-        Return code of the npx executable.
+    int | subprocess.CompletedProcess[str | bytes]
+        Return code of the npx executable, or the CompletedProcess[str | bytes] object.
     """
     if args is None:
         args = sys.argv[1:]
     return call_node(
         os.path.join(ROOT_DIR, "lib", "node_modules", "npm", "bin", "npx-cli.js"),
         *args,
+        return_completed_process=return_completed_process,
         **kwargs,
     )
 

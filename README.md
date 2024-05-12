@@ -64,9 +64,17 @@ from nodejs_wheel import (
     npx,
 )
 
-node("--version")
-npm("--version")
-npx("--version")
+return_code0 = node(["--version"])
+return_code1 = npm(["--version"])
+return_code2 = npx(["--version"])
+```
+
+*New in v20.13.1*: pass `return_completed_process=True` to get `subprocess.CompletedProcess` instead of `int`.
+
+```py
+completed_process0 = node(["--version"], return_completed_process=True)
+completed_process1 = npm(["--version"], return_completed_process=True)
+completed_process2 = npx(["--version"], return_completed_process=True)
 ```
 
 ## License
