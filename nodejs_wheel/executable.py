@@ -16,7 +16,7 @@ def _program(
 
 @overload
 def _program(
-    name: str, args: list[str], return_completed_process: Literal[False], **kwargs: Any
+    name: str, args: list[str], return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> subprocess.CompletedProcess[str | bytes]: ...
 
 
@@ -44,7 +44,7 @@ def call_node(
 
 @overload
 def call_node(
-    *args: str, return_completed_process: Literal[False], **kwargs: Any
+    *args: str, return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> int: ...
 
 
@@ -74,7 +74,7 @@ def node(
 
 @overload
 def node(
-    args: list[str] | None, return_completed_process: Literal[False], **kwargs: Any
+    args: list[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> int: ...
 
 
@@ -117,7 +117,7 @@ def npm(
 
 @overload
 def npm(
-    args: list[str] | None, return_completed_process: Literal[False], **kwargs: Any
+    args: list[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> int: ...
 
 
@@ -165,7 +165,7 @@ def npx(
 
 @overload
 def npx(
-    args: list[str] | None, return_completed_process: Literal[False], **kwargs: Any
+    args: list[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> int: ...
 
 
