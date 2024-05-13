@@ -3,31 +3,31 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
-from typing import Any, Literal, overload
+from typing import Any, Literal, overload, Iterable
 
 ROOT_DIR = os.path.dirname(__file__)
 
 
 @overload
 def _program(
-    name: str, args: list[str], return_completed_process: Literal[True], **kwargs: Any
+    name: str, args: Iterable[str], return_completed_process: Literal[True], **kwargs: Any
 ) -> subprocess.CompletedProcess[str | bytes]: ...
 
 
 @overload
 def _program(
-    name: str, args: list[str], return_completed_process: Literal[False] = ..., **kwargs: Any
+    name: str, args: Iterable[str], return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> subprocess.CompletedProcess[str | bytes]: ...
 
 
 @overload
 def _program(
-    name: str, args: list[str], return_completed_process: bool = False, **kwargs: Any
+    name: str, args: Iterable[str], return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]: ...
 
 
 def _program(
-    name: str, args: list[str], return_completed_process: bool = False, **kwargs: Any
+    name: str, args: Iterable[str], return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]:
     bin_dir = ROOT_DIR if os.name == "nt" else os.path.join(ROOT_DIR, "bin")
     complete_process = subprocess.run([os.path.join(bin_dir, name), *args], **kwargs)
@@ -68,24 +68,24 @@ def call_node(
 
 @overload
 def node(
-    args: list[str] | None, return_completed_process: Literal[True], **kwargs: Any
+    args: Iterable[str] | None, return_completed_process: Literal[True], **kwargs: Any
 ) -> subprocess.CompletedProcess[str | bytes]: ...
 
 
 @overload
 def node(
-    args: list[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
+    args: Iterable[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> int: ...
 
 
 @overload
 def node(
-    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+    args: Iterable[str] | None = None, return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]: ...
 
 
 def node(
-    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+    args: Iterable[str] | None = None, return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]:
     """Call the node executable with the given arguments.
 
@@ -111,24 +111,24 @@ def node(
 
 @overload
 def npm(
-    args: list[str] | None, return_completed_process: Literal[True], **kwargs: Any
+    args: Iterable[str] | None, return_completed_process: Literal[True], **kwargs: Any
 ) -> subprocess.CompletedProcess[str | bytes]: ...
 
 
 @overload
 def npm(
-    args: list[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
+    args: Iterable[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> int: ...
 
 
 @overload
 def npm(
-    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+    args: Iterable[str] | None = None, return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]: ...
 
 
 def npm(
-    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+    args: Iterable[str] | None = None, return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]:
     """Call the npm executable with the given arguments.
 
@@ -159,24 +159,24 @@ def npm(
 
 @overload
 def npx(
-    args: list[str] | None, return_completed_process: Literal[True], **kwargs: Any
+    args: Iterable[str] | None, return_completed_process: Literal[True], **kwargs: Any
 ) -> subprocess.CompletedProcess[str | bytes]: ...
 
 
 @overload
 def npx(
-    args: list[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
+    args: Iterable[str] | None, return_completed_process: Literal[False] = ..., **kwargs: Any
 ) -> int: ...
 
 
 @overload
 def npx(
-    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+    args: Iterable[str] | None = None, return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]: ...
 
 
 def npx(
-    args: list[str] | None = None, return_completed_process: bool = False, **kwargs: Any
+    args: Iterable[str] | None = None, return_completed_process: bool = False, **kwargs: Any
 ) -> int | subprocess.CompletedProcess[str | bytes]:
     """Call the npx executable with the given arguments.
 
