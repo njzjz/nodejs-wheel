@@ -24,6 +24,9 @@ jobs:
           - os: ubuntu-latest
             python: 311
             platform_id: manylinux_x86_64
+          - os: ubuntu-latest
+            python: 311
+            platform_id: musllinux_x86_64
           # macos-x86-64
           - os: macos-13
             python: 311
