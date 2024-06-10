@@ -3,7 +3,11 @@ from __future__ import annotations
 import os
 import subprocess
 import sys
-from typing import Any, Iterable, Literal, overload
+from typing import Any, Iterable, overload
+try:
+    from typing import Literal  # python >=3.8
+except ImportError:
+    from typing_extensions import Literal  # type: ignore
 
 ROOT_DIR = os.path.dirname(__file__)
 
