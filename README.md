@@ -1,6 +1,6 @@
 # Unoffical Node.js wheels
 
-[![Pypi version](https://img.shields.io/pypi/v/nodejs-wheel)](https://pypi.org/project/nodejs-wheel/)
+[![Pypi version](https://img.shields.io/pypi/v/nodejs-wheel?label=nodejs-wheel&logo=pypi)](https://pypi.org/project/nodejs-wheel/)
 [![Pypi downloads](https://img.shields.io/pypi/dm/nodejs-wheel)](https://pypi.org/project/nodejs-wheel/)
 [![Pypi downloads](https://img.shields.io/pypi/dw/nodejs-wheel)](https://pypi.org/project/nodejs-wheel/)
 [![Pypi downloads](https://img.shields.io/pypi/dd/nodejs-wheel)](https://pypi.org/project/nodejs-wheel/)
@@ -12,6 +12,11 @@ pip install nodejs-wheel
 ```
 
 *New in v20.13.0*: If you don't need command line interface (CLI), install only `nodejs-wheel-binaries`, which is a direct dependency of `nodejs-wheel`.
+
+[![Pypi version](https://img.shields.io/pypi/v/nodejs-wheel-binaries?label=nodejs-wheel-binaries&logo=pypi)](https://pypi.org/project/nodejs-wheel-binaries/)
+[![Pypi downloads](https://img.shields.io/pypi/dm/nodejs-wheel-binaries)](https://pypi.org/project/nodejs-wheel-binaries/)
+[![Pypi downloads](https://img.shields.io/pypi/dw/nodejs-wheel-binaries)](https://pypi.org/project/nodejs-wheel-binaries/)
+[![Pypi downloads](https://img.shields.io/pypi/dd/nodejs-wheel-binaries)](https://pypi.org/project/nodejs-wheel-binaries/)
 
 ```sh
 pip install nodejs-wheel-binaries
