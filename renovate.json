@@ -1,5 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "baseBranches": ["master", "current"],
+  "packageRules": [
+    {
+      "matchBaseBranches": ["current"],
+      "ignoreUnstable": false
+    }
+  ],
   "extends": [
     "local>njzjz/renovate-config"
   ]
