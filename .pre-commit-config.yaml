@@ -24,3 +24,10 @@ repos:
       - id: mypy
         args: [--strict, --ignore-missing-imports]
         additional_dependencies: [hatch]
+  - repo: local
+    hooks:
+      - id: same-readme
+        name: keep two README.md files the same
+        language: system
+        entry: cp README.md cmd/README.md
+        pass_filenames: false
