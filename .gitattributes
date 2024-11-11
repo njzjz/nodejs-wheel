@@ -1,3 +1,1 @@
 .git_archival.txt  export-subst
-# different in different branches
-.nvmrc merge=ours
