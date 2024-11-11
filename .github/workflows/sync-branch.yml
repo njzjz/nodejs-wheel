@@ -28,6 +28,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git branch ${BRANCH_NAME} -f
           git checkout ${BRANCH_NAME}
+          git config --global merge.ours.driver true
           git merge origin/${{ github.ref_name }} -s ours
           git push origin ${BRANCH_NAME} --force
           PR_URL="$(gh pr list --head "${BRANCH_NAME}" --state open --json url --jq .[].url)"
