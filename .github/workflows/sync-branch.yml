@@ -3,7 +3,7 @@ name: Sync master to current
 on:
   push:
     branches:
-      - master-to-merge
+      - master
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
