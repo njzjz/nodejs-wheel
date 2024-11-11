@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          depth: 0
+          fetch-depth: 0
       - name: Create PR
         run: |
           git config user.name "github-actions[bot]"
