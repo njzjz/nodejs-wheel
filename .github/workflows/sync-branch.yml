@@ -29,7 +29,7 @@ jobs:
           git branch ${BRANCH_NAME} -f
           git checkout ${BRANCH_NAME}
           git config --global merge.ours.driver true
-          git merge origin/${{ github.ref_name }} -s ours
+          git merge origin/${{ github.ref_name }}
           git push origin ${BRANCH_NAME} --force
           PR_URL="$(gh pr list --head "${BRANCH_NAME}" --state open --json url --jq .[].url)"
           if [[ -n "${PR_URL}" ]]; then
