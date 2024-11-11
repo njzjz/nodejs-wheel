@@ -37,4 +37,4 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH_NAME: sync-master-to-merge
+          BRANCH_NAME: sync-master-to-current
