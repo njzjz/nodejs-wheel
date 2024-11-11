@@ -27,6 +27,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git branch ${BRANCH_NAME} -f
           git checkout ${BRANCH_NAME}
+          git merge origin/current
           git push origin ${BRANCH_NAME} --force
           PR_URL="$(gh pr list --head "${BRANCH_NAME}" --state open --json url --jq .[].url)"
           if [[ -n "${PR_URL}" ]]; then
