@@ -9,8 +9,8 @@ description = "unoffical Node.js package"
 authors = [
   {name = "Jinzhe Zeng", email = "jinzhe.zeng@rutgers.edu"},
 ]
-license = {file = "LICENSE"}
 classifiers = [
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Development Status :: 5 - Production/Stable",
     "Environment :: Console",
