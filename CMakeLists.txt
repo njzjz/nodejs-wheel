@@ -23,7 +23,7 @@ if (UNIX)
         USES_TERMINAL_INSTALL true
         USES_TERMINAL_TEST true
     )
-elseif(WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64")
+elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "x64")
     ExternalProject_Add(nodejs
         URL https://github.com/nodejs/node/archive/refs/tags/v${CMAKE_PROJECT_VERSION}.tar.gz
         CONFIGURE_COMMAND ""
@@ -56,7 +56,7 @@ elseif(WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64")
         DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel/lib/node_modules/
         USE_SOURCE_PERMISSIONS
     )
-elseif(WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "ARM64")
+elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "ARM64")
     ExternalProject_Add(nodejs
         URL https://github.com/nodejs/node/archive/refs/tags/v${CMAKE_PROJECT_VERSION}.tar.gz
         CONFIGURE_COMMAND ""
