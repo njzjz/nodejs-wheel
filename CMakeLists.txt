@@ -23,12 +23,45 @@ if (UNIX)
         USES_TERMINAL_INSTALL true
         USES_TERMINAL_TEST true
     )
-elseif(WIN32)
+elseif(WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "AMD64")
     ExternalProject_Add(nodejs
         URL https://github.com/nodejs/node/archive/refs/tags/v${CMAKE_PROJECT_VERSION}.tar.gz
         CONFIGURE_COMMAND ""
         BUILD_IN_SOURCE 1
         BUILD_COMMAND <SOURCE_DIR>/vcbuild
+        INSTALL_COMMAND ""
+        SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source
+        USES_TERMINAL_DOWNLOAD true
+        USES_TERMINAL_UPDATE true
+        USES_TERMINAL_PATCH true
+        USES_TERMINAL_CONFIGURE true
+        USES_TERMINAL_BUILD true
+        USES_TERMINAL_INSTALL true
+        USES_TERMINAL_TEST true
+    )
+    install(
+        FILES ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/out/Release/node.exe
+        DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel
+        PERMISSIONS
+        OWNER_READ
+        OWNER_WRITE
+        OWNER_EXECUTE
+        GROUP_READ
+        GROUP_EXECUTE
+        WORLD_READ
+        WORLD_EXECUTE
+    )
+    install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm
+        DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel/lib/node_modules/
+        USE_SOURCE_PERMISSIONS
+    )
+elseif(WIN32 AND CMAKE_SYSTEM_PROCESSOR STREQUAL "ARM64")
+    ExternalProject_Add(nodejs
+        URL https://github.com/nodejs/node/archive/refs/tags/v${CMAKE_PROJECT_VERSION}.tar.gz
+        CONFIGURE_COMMAND ""
+        BUILD_IN_SOURCE 1
+        BUILD_COMMAND <SOURCE_DIR>/vcbuild arm64
         INSTALL_COMMAND ""
         SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source
         USES_TERMINAL_DOWNLOAD true

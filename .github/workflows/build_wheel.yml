@@ -44,11 +44,15 @@ jobs:
           - os: ARM64
             python: 311
             platform_id: manylinux_aarch64
+          # windows-arm64
+          - os: windows-latest
+            python: 311
+            platform_id: win_arm64
 
     steps:
       - uses: actions/checkout@v4
       - uses: ilammy/setup-nasm@v1
-        if: matrix.platform_id == 'win_amd64'
+        if: matrix.platform_id == 'win_amd64' || matrix.platform_id == 'win_arm64'
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.21
         env:
