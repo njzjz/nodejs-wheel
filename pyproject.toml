@@ -16,6 +16,7 @@ classifiers = [
     "Environment :: Console",
 ]
 dependencies = [
+    "typing-extensions;python_version<'3.8'",
 ]
 requires-python = ">=3.7"
 readme = "README.md"

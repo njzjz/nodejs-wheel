@@ -36,6 +36,7 @@ The project is powered by [scikit-build-core](https://github.com/scikit-build/sc
 | macOS   | x86_64  | 64  | >= macOS-11    | v18.18.0    |
 | macOS   | arm64   | 64  | >= macOS-11    | v20.11.1    |
 | Windows | amd64   | 64  |                | v18.18.0    |
+| Windows | arm64   | 64  |                | v22.12.0    |
 
 ## Usage
 
