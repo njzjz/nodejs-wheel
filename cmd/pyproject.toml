@@ -26,6 +26,7 @@ repository = "https://github.com/njzjz/nodejs-wheel"
 node = "nodejs_wheel.executable:_node_entry_point"
 npm = "nodejs_wheel.executable:_npm_entry_point"
 npx = "nodejs_wheel.executable:_npx_entry_point"
+corepack = "nodejs_wheel.executable:_corepack_entry_point"
 
 [tool.hatch.version]
 source = "vcs"
