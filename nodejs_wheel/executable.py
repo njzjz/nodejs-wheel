@@ -240,6 +240,62 @@ def npx(
     )
 
 
+@overload
+def corepack(
+    args: Iterable[str] | None, return_completed_process: Literal[True], **kwargs: Any
+) -> subprocess.CompletedProcess[str | bytes]: ...
+
+
+@overload
+def corepack(
+    args: Iterable[str] | None,
+    return_completed_process: Literal[False] = ...,
+    **kwargs: Any,
+) -> int: ...
+
+
+@overload
+def corepack(
+    args: Iterable[str] | None = None,
+    return_completed_process: bool = False,
+    **kwargs: Any,
+) -> int | subprocess.CompletedProcess[str | bytes]: ...
+
+
+def corepack(
+    args: Iterable[str] | None = None,
+    return_completed_process: bool = False,
+    **kwargs: Any,
+) -> int | subprocess.CompletedProcess[str | bytes]:
+    """Call the corepack executable with the given arguments.
+
+    Parameters
+    ----------
+    args : Optional[list[str]], default=None
+        List of arguments to pass to the corepack executable.
+        If None, the arguments are taken from sys.argv[1:].
+    return_completed_process : bool, default=False
+        If True, return the CompletedProcess[str | bytes] object instead of the return code.
+    **kwargs : dict[str, Any]
+        Other arguments passed to subprocess.call
+
+    Returns
+    -------
+    int | subprocess.CompletedProcess[str | bytes]
+        Return code of the corepack executable, or the CompletedProcess[str | bytes] object.
+    """
+    if args is None:
+        args = sys.argv[1:]
+    return call_node(
+        os.path.join(
+            ROOT_DIR, "lib", "node_modules", "corepack", "dist", "corepack.js"
+        ),
+        *args,
+        return_completed_process=return_completed_process,
+        **kwargs,
+    )
+
+
 def _node_entry_point() -> None:
     raise SystemExit(node(close_fds=False))
 
@@ -250,3 +306,7 @@ def _npm_entry_point() -> None:
 
 def _npx_entry_point() -> None:
     raise SystemExit(npx(close_fds=False))
+
+
+def _corepack_entry_point() -> None:
+    raise SystemExit(corepack(close_fds=False))

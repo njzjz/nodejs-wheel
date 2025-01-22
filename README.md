@@ -33,6 +33,7 @@ The project is powered by [scikit-build-core](https://github.com/scikit-build/sc
 | Linux   | x86_64  | 64  | glibc >= 2.17  | v18.18.0    |
 | Linux   | x86_64  | 64  | musl >= 1.2    | v20.14.0    |
 | Linux   | aarch64 | 64  | glibc >= 2.17  | v20.13.0    |
+| Linux   | aarch64 | 64  | musl >= 1.2    | v22.13.1    |
 | macOS   | x86_64  | 64  | >= macOS-11    | v18.18.0    |
 | macOS   | arm64   | 64  | >= macOS-11    | v20.11.1    |
 | Windows | amd64   | 64  |                | v18.18.0    |
@@ -48,6 +49,8 @@ Only available in the `nodejs-wheel` package.
 node -h
 npm -h
 npx -h
+# New in v22.13.1
+corepack -h
 ```
 
 ### Run library module as a script
@@ -69,11 +72,15 @@ from nodejs_wheel import (
     node,
     npm,
     npx,
+    # corepack: New in v22.13.1
+    corepack,
 )
 
 return_code0 = node(["--version"])
 return_code1 = npm(["--version"])
 return_code2 = npx(["--version"])
+# corepack: New in v22.13.1
+return_code3 = corepack(]"--version"])
 ```
 
 *New in v20.13.1*: pass `return_completed_process=True` to get `subprocess.CompletedProcess` instead of `int`.
@@ -82,6 +89,8 @@ return_code2 = npx(["--version"])
 completed_process0 = node(["--version"], return_completed_process=True)
 completed_process1 = npm(["--version"], return_completed_process=True)
 completed_process2 = npx(["--version"], return_completed_process=True)
+# corepack: New in v22.13.1
+completed_process3 = corepack(["--version"], return_completed_process=True)
 ```
 
 ## License

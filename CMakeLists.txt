@@ -52,7 +52,7 @@ elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "x64")
         WORLD_EXECUTE
     )
     install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/corepack
         DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel/lib/node_modules/
         USE_SOURCE_PERMISSIONS
     )
@@ -85,7 +85,7 @@ elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "ARM64")
         WORLD_EXECUTE
     )
     install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/corepack
         DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel/lib/node_modules/
         USE_SOURCE_PERMISSIONS
     )
