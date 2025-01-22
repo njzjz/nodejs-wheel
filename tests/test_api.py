@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from nodejs_wheel import (
+    corepack,
     node,
     npm,
     npx,
@@ -9,14 +10,18 @@ from nodejs_wheel import (
 return_code0 = node(["--version"])
 return_code1 = npm(["--version"])
 return_code2 = npx(["--version"])
+return_code3 = corepack(["--version"])
 assert return_code0 == 0
 assert return_code1 == 0
 assert return_code2 == 0
+assert return_code3 == 0
 
 completed_process0 = node(["--version"], return_completed_process=True)
 completed_process1 = npm(["--version"], return_completed_process=True)
 completed_process2 = npx(["--version"], return_completed_process=True)
+completed_process3 = corepack(["--version"], return_completed_process=True)
 
 assert completed_process0.returncode == 0
 assert completed_process1.returncode == 0
 assert completed_process2.returncode == 0
+assert completed_process3.returncode == 0
