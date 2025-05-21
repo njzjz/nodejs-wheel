@@ -48,7 +48,7 @@ jobs:
             python: 311
             platform_id: musllinux_aarch64
           # windows-arm64
-          - os: windows-latest
+          - os: windows-11-arm
             python: 311
             platform_id: win_arm64
 
