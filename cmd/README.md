@@ -30,9 +30,9 @@ The project is powered by [scikit-build-core](https://github.com/scikit-build/sc
 
 | OS      | Arch    | Bit | Conditions     | New in      |
 | ------- | ------- | --- | -------------- | ----------- |
-| Linux   | x86_64  | 64  | glibc >= 2.17  | v18.18.0    |
+| Linux   | x86_64  | 64  | glibc >= 2.28  | v18.18.0    |
 | Linux   | x86_64  | 64  | musl >= 1.2    | v20.14.0    |
-| Linux   | aarch64 | 64  | glibc >= 2.17  | v20.13.0    |
+| Linux   | aarch64 | 64  | glibc >= 2.28  | v20.13.0    |
 | Linux   | aarch64 | 64  | musl >= 1.2    | v22.13.1    |
 | macOS   | x86_64  | 64  | >= macOS-11    | v18.18.0    |
 | macOS   | arm64   | 64  | >= macOS-11    | v20.11.1    |
