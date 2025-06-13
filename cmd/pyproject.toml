@@ -7,7 +7,7 @@ name = "nodejs-wheel"
 dynamic = ["version", "dependencies"]
 description = "unoffical Node.js package"
 authors = [
-  {name = "Jinzhe Zeng", email = "jinzhe.zeng@rutgers.edu"},
+  {name = "Jinzhe Zeng", email = "jinzhe.zeng@ustc.edu.cn"},
 ]
 license = {file = "LICENSE"}
 classifiers = [
