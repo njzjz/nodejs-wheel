@@ -7,7 +7,7 @@ name = "nodejs-wheel-binaries"
 dynamic = ["version"]
 description = "unoffical Node.js package"
 authors = [
-  {name = "Jinzhe Zeng", email = "jinzhe.zeng@rutgers.edu"},
+  {name = "Jinzhe Zeng", email = "jinzhe.zeng@ustc.edu.cn"},
 ]
 classifiers = [
     "License :: OSI Approved :: MIT License",
