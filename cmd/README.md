@@ -1,4 +1,4 @@
-# Unoffical Node.js wheels
+# Unofficial Node.js wheels
 
 [![Pypi version](https://img.shields.io/pypi/v/nodejs-wheel?label=nodejs-wheel&logo=pypi)](https://pypi.org/project/nodejs-wheel/)
 [![Pypi downloads](https://img.shields.io/pypi/dm/nodejs-wheel)](https://pypi.org/project/nodejs-wheel/)
@@ -100,6 +100,6 @@ completed_process3 = corepack(["--version"], return_completed_process=True)
 
 The project is inspired by many other similiar projects:
 
-- [samwillis/nodejs-pypi](https://github.com/samwillis/nodejs-pypi): The package redistribute the official Node.js binaraies to PyPI. However, the offical binary for Nodejs 18 requires GLIBC 2.28, making it unsupported in [manylinux2014](https://github.com/pypa/manylinux) images. Besides, the wheel tag is wrong.
+- [samwillis/nodejs-pypi](https://github.com/samwillis/nodejs-pypi): The package redistribute the official Node.js binaries to PyPI. However, the official binary for Nodejs 18 requires GLIBC 2.28, making it unsupported in [manylinux2014](https://github.com/pypa/manylinux) images. Besides, the wheel tag is wrong.
 - [sbwml/node-latest-centos](https://github.com/sbwml/node-latest-centos): Use GitHub Actions to build Node.js in CentOS 7, but is not related to Python or PyPI.
 - [scikit-build/cmake-python-distributions](https://github.com/scikit-build/cmake-python-distributions): Use cibuildwheel and scikit-build to build CMake and distribute CMake in PyPI.
