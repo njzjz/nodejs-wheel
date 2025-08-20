@@ -28,7 +28,7 @@ elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "x64")
         URL https://github.com/nodejs/node/archive/refs/tags/v${CMAKE_PROJECT_VERSION}.tar.gz
         CONFIGURE_COMMAND ""
         BUILD_IN_SOURCE 1
-        BUILD_COMMAND <SOURCE_DIR>/vcbuild
+        BUILD_COMMAND <SOURCE_DIR>/vcbuild clang-cl
         INSTALL_COMMAND ""
         SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source
         USES_TERMINAL_DOWNLOAD true
