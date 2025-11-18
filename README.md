@@ -80,7 +80,7 @@ return_code0 = node(["--version"])
 return_code1 = npm(["--version"])
 return_code2 = npx(["--version"])
 # corepack: New in v22.13.1
-return_code3 = corepack(]"--version"])
+return_code3 = corepack(["--version"])
 ```
 
 *New in v20.13.1*: pass `return_completed_process=True` to get `subprocess.CompletedProcess` instead of `int`.
