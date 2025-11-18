@@ -51,11 +51,6 @@ elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "x64")
         WORLD_READ
         WORLD_EXECUTE
     )
-    install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/corepack
-        DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel/lib/node_modules/
-        USE_SOURCE_PERMISSIONS
-    )
 elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "ARM64")
     ExternalProject_Add(nodejs
         URL https://github.com/nodejs/node/archive/refs/tags/v${CMAKE_PROJECT_VERSION}.tar.gz
@@ -83,11 +78,6 @@ elseif(WIN32 AND CMAKE_GENERATOR_PLATFORM STREQUAL "ARM64")
         GROUP_EXECUTE
         WORLD_READ
         WORLD_EXECUTE
-    )
-    install(
-        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/npm ${CMAKE_CURRENT_BINARY_DIR}/nodejs_source/deps/corepack
-        DESTINATION ${SKBUILD_PLATLIB_DIR}/nodejs_wheel/lib/node_modules/
-        USE_SOURCE_PERMISSIONS
     )
 else()
     message(FATAL_ERROR "Unsupported platform")
