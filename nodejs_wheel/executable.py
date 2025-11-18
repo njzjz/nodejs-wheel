@@ -8,7 +8,7 @@ from typing import Any, Iterable, overload
 try:
     from typing import Literal  # python >=3.8
 except ImportError:
-    from typing_extensions import Literal  # type: ignore
+    from typing_extensions import Literal
 
 ROOT_DIR = os.path.dirname(__file__)
 
