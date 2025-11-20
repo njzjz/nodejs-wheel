@@ -20,7 +20,7 @@ jobs:
     env:
       target_branch: current
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           ref: ${{ env.target_branch }}
           fetch-depth: 0
