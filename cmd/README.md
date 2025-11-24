@@ -49,8 +49,6 @@ Only available in the `nodejs-wheel` package.
 node -h
 npm -h
 npx -h
-# New in v22.13.1
-corepack -h
 ```
 
 ### Run library module as a script
@@ -72,15 +70,11 @@ from nodejs_wheel import (
     node,
     npm,
     npx,
-    # corepack: New in v22.13.1
-    corepack,
 )
 
 return_code0 = node(["--version"])
 return_code1 = npm(["--version"])
 return_code2 = npx(["--version"])
-# corepack: New in v22.13.1
-return_code3 = corepack(["--version"])
 ```
 
 *New in v20.13.1*: pass `return_completed_process=True` to get `subprocess.CompletedProcess` instead of `int`.
@@ -89,8 +83,6 @@ return_code3 = corepack(["--version"])
 completed_process0 = node(["--version"], return_completed_process=True)
 completed_process1 = npm(["--version"], return_completed_process=True)
 completed_process2 = npx(["--version"], return_completed_process=True)
-# corepack: New in v22.13.1
-completed_process3 = corepack(["--version"], return_completed_process=True)
 ```
 
 ## License
