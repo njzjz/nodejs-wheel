@@ -11,7 +11,7 @@ if (UNIX)
         CONFIGURE_COMMAND echo >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h
         COMMAND echo \#undef HAVE_SYS_RANDOM_H >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h
         COMMAND echo \#undef HAVE_GETRANDOM >> <SOURCE_DIR>/deps/cares/config/linux/ares_config.h
-        COMMAND <SOURCE_DIR>/configure --prefix=${SKBUILD_PLATLIB_DIR}/nodejs_wheel
+        COMMAND <SOURCE_DIR>/configure --prefix=${SKBUILD_PLATLIB_DIR}/nodejs_wheel --ninja
         BUILD_IN_SOURCE 1
         BUILD_COMMAND make -j${N}
         INSTALL_COMMAND make install
