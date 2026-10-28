@@ -8,13 +8,59 @@ on:
     tags:
       - v*
   pull_request:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing release tag to rebuild and finish publishing
+        required: true
+        type: string
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  group: ${{ github.workflow }}-${{ inputs.release_tag && format('refs/tags/{0}', inputs.release_tag) || github.ref || github.run_id }}
   cancel-in-progress: true
 
 jobs:
+  resolve_source:
+    name: Resolve and validate source
+    runs-on: ubuntu-latest
+    outputs:
+      commit: ${{ steps.source.outputs.commit }}
+    steps:
+      - name: Validate release tag format
+        if: github.event_name == 'workflow_dispatch'
+        shell: python
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          import os
+          import re
+
+          if not re.fullmatch(r"v[0-9]+\.[0-9]+\.[0-9]+(?:rc[0-9]+)?", os.environ["RELEASE_TAG"]):
+              raise SystemExit("Expected an existing vMAJOR.MINOR.PATCH or vMAJOR.MINOR.PATCHrcN tag")
+      - uses: actions/checkout@v6
+        with:
+          # Explicit tags prevent a same-named branch from selecting other sources.
+          ref: ${{ inputs.release_tag && format('refs/tags/{0}', inputs.release_tag) || github.ref }}
+      - name: Pin source and check the bundled Node.js version
+        id: source
+        shell: python
+        env:
+          RELEASE_TAG: ${{ inputs.release_tag }}
+        run: |
+          import os
+          import pathlib
+          import subprocess
+
+          tag = os.environ["RELEASE_TAG"]
+          if tag:
+              node_version = pathlib.Path(".nvmrc").read_text().strip()
+              if tag.removeprefix("v").split("rc", 1)[0] != node_version:
+                  raise SystemExit(f"Release tag {tag} does not match Node.js {node_version}")
+          commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write(f"commit={commit}\n")
   build_wheels:
+    needs: resolve_source
     name: Build wheels for cp${{ matrix.python }}-${{ matrix.platform_id }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -54,6 +100,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.resolve_source.outputs.commit }}
+          # Version providers need the release tags even with a pinned commit.
+          fetch-depth: 0
       - uses: ilammy/setup-nasm@v1
         if: matrix.platform_id == 'win_amd64' || matrix.platform_id == 'win_arm64'
       - name: Build wheels
@@ -67,10 +117,15 @@ jobs:
           name: cibw-wheels-cp${{ matrix.python }}-${{ matrix.platform_id }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
   build_sdist:
+    needs: resolve_source
     name: Build source distribution
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.resolve_source.outputs.commit }}
+          # Both setuptools-scm and hatch-vcs derive the version from tags.
+          fetch-depth: 0
       - uses: actions/setup-python@v6
         name: Install Python
         with:
@@ -91,7 +146,9 @@ jobs:
   upload_pypi:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v'))
     permissions:
         # IMPORTANT: this permission is mandatory for trusted publishing
         id-token: write
@@ -103,9 +160,12 @@ jobs:
           merge-multiple: true
 
       - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # A historical upload can have succeeded for only part of the release.
+          skip-existing: ${{ github.event_name == 'workflow_dispatch' }}
   pass:
     name: Pass testing build wheels
-    needs: [build_wheels, build_sdist]
+    needs: [resolve_source, build_wheels, build_sdist]
     runs-on: ubuntu-latest
     if: always()
     steps:
